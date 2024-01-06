@@ -10,6 +10,8 @@
     <style>
         body {
             background-color: rgb(255, 255, 255);
+            position: relative;
+            overflow-x: hidden;
         }
         .custom-navbar {
             padding: 20px 0;
@@ -39,9 +41,22 @@
         .image-title {
             margin-top: 10px;
         }
+        .background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
+
+    <video autoplay muted loop id="myVideo" class="background-video">
+        <source src="4K Winter Snow Fall Animation - Free Background, Wallpaper, Stock Footage.mp4" type="video/mp4">
+    </video>
+
     <header>
         <h1 class="text-center mt-5">Picture Gallery</h1>
     </header>
@@ -53,7 +68,7 @@
             </a>
             <div class="mx-auto">
                 <a href="http://127.0.0.1:5500/index.html" style="text-decoration: none; color: inherit;">
-                    <h2>Crumb art</h2>
+                    <h2>Pictures</h2>
                 </a>
             </div>
             
@@ -75,20 +90,16 @@
                             <a class="nav-link" href="http://127.0.0.1:5500/Picture.html">Pictures</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Legal notice</a>
+                            <a class="nav-link" href="http://127.0.0.1:5500/Impresum.html">Impressum</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About us</a>
+                            <a class="nav-link" href="http://127.0.0.1:5500/Untitled-1.html">About us</a>    
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Download
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Recipe</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/Retzept.html">Recipes</a>                                       
+                        </li>                                   
                         </li>
-                    </ul>
+
                 </div>
             </div>
         </div>
@@ -131,7 +142,7 @@
     </div>
 
     <footer class="text-center mt-4">
-        <!-- Footer-Inhalt -->
+        <!-- Footer content -->
     </footer>
 </body>
 </html>

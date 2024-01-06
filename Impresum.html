@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pictures Gallery</title>
+    <link href="https://fonts.googleapis.com/css?family=Rubik+Scribble&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: rgb(255, 255, 255);
+            position: relative;
+            overflow-x: hidden;
+        }
+        .custom-navbar {
+            padding: 20px 0;
+            background-color: #a4cbd3;
+        }
+        .navbar-brand {
+            font-family: 'Rubik Scribble', sans-serif;
+            font-size: 24px;
+        }
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        .gallery-row {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 150px;
+        }
+        .center-box {
+            text-align: center;
+        }
+        .center-image {
+            width: 300px;
+            height: auto;
+            border-radius: 15px; /* Abgerundete Ecken */
+        }
+        .image-title {
+            margin-top: 10px;
+        }
+        .background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+        .impressum-box {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .impressum-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop id="myVideo" class="background-video">
+        <source src="4K Winter Snow Fall Animation - Free Background, Wallpaper, Stock Footage.mp4" type="video/mp4">
+    </video>
+
+    <header>
+        <h1 class="text-center mt-5">Picture Gallery</h1>
+    </header>
+
+    <nav class="navbar custom-navbar fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://www.zarla.com/images/zarla-se-sensation-1x1-2400x2400-20220307-g47kv8c4vy8ktpp6v4b6.png?crop=1:1,smart&width=250&dpr=2" alt="Crumb Art Logo" class="logo">
+            </a>
+            <div class="mx-auto">
+                <a href="http://127.0.0.1:5500/index.html" style="text-decoration: none; color: inherit;">
+                    <h2>Impressum</h2>
+                </a>
+            </div>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/index.html" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/Picture.html">Pictures</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/Impresum.html">Impressum</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/Untitled-1.html">About us</a>                                       
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/Retzept.html">Recipes</a>                                       
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Impressum Box -->
+    <div class="container impressum-container">
+        <div class="impressum-box">
+            <h2>Impressum</h2>
+            <p>Ryley Cole</p>
+            <p>Carrotenstrasse 3</p>
+            <p>5849 Root</p>
+            <p>grellabamigoi-2533@yopmail.com</p>
+            <p>Telephone: +41 79 933 39 75</p>
+            <p>Despite careful control of the content, we assume no liability for the content of external links. The operators of the linked pages are solely responsible for their content.</p>
+            <p>The content and works on this website are subject to German copyright law. Duplication, processing, distribution and any form of commercialization of such material beyond the scope of the copyright law shall require the prior written consent of its respective author or creator. Downloads and copies of this site are only permitted for private, non-commercial use.</p>
+            <p>Insofar as the content on this site was not created by the operator, the copyrights of third parties are respected. In particular, third-party content is identified as such. Should you nevertheless become aware of a copyright infringement, please inform us accordingly. If we become aware of any infringements, we will remove such content immediately.</p>
+            <p>Data protection:</p>
+            <p>Information on data protection can be found in our privacy policy.</p>
+            <p>Picture credits:</p>
+            <p>The images used on this website are from [YumSquad.ch].</p>
+        </div>
+    </div>
+
+    <footer class="text-center mt-4">
+        <!-- Footer content -->
+    </footer>
+</body>
+</html>

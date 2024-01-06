@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pictures Gallery</title>
+    <link href="https://fonts.googleapis.com/css?family=Rubik+Scribble&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: rgb(255, 255, 255);
+            position: relative;
+            overflow-x: hidden;
+        }
+        .custom-navbar {
+            padding: 20px 0;
+            background-color: #a4cbd3;
+        }
+        .navbar-brand {
+            font-family: 'Rubik Scribble', sans-serif;
+            font-size: 24px;
+        }
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        .gallery-row {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 150px;
+        }
+        .center-box {
+            text-align: center;
+        }
+        .center-image {
+            width: 300px;
+            height: auto;
+            border-radius: 15px;
+        }
+        .image-title {
+            margin-top: 10px;
+        }
+        .background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop id="myVideo" class="background-video">
+        <source src="4K Winter Snow Fall Animation - Free Background, Wallpaper, Stock Footage.mp4" type="video/mp4">
+    </video>
+
+    <header>
+        <h1 class="text-center mt-5">Picture Gallery</h1>
+    </header>
+
+    <nav class="navbar custom-navbar fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://www.zarla.com/images/zarla-se-sensation-1x1-2400x2400-20220307-g47kv8c4vy8ktpp6v4b6.png?crop=1:1,smart&width=250&dpr=2" alt="Crumb Art Logo" class="logo">
+            </a>
+            <div class="mx-auto">
+                <a href="http://127.0.0.1:5500/index.html" style="text-decoration: none; color: inherit;">
+                    <h2>Recipes</h2>
+                </a>
+            </div>
+            
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/index.html" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/Picture.html">Pictures</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/Impresum.html">Impressum</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/Untitled-1.html">About us</a>                                       
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:5500/Retzept.html">Recipes</a>                                       
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Recipe Selection -->
+    <div class="container mt-5">
+        <h2 class="text-center">Recipe Selection</h2>
+        <p class="text-center">Select a recipe and enter the number of people you want to adjust the recipe for:</p>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                    <select class="form-select" id="rezeptAuswahl">
+                        <option value="Mailänderli">Mailänderli</option>
+                        <option value="Cookies">Cookies</option>
+                    </select>
+                    <input type="number" class="form-control" id="personen" placeholder="Number of People">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" onclick="calculateAmounts()">Adjust</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <a href="Mailaenderli_Rezept_mit_Startseite_English_Updated.pdf" download="Mailaenderli_Rezept">
+                Download Mailänderli Recipe (PDF)
+            </a>
+        </div>
+        
+        <div id="rezeptContainer" style="display: none;">
+            <!-- Dynamic ingredient quantities will be displayed here -->
+            <h2 class="text-center" id="rezeptTitel"></h2>
+            <div id="rezeptMengen"></div>
+        </div>
+    </div>
+
+    <footer class="text-center mt-4">
+        <!-- Footer content -->
+    </footer>
+
+    <script>
+        function calculateAmounts() {
+            // Get the selected option from the dropdown menu
+            var rezeptAuswahl = document.getElementById("rezeptAuswahl");
+            var selectedRecipe = rezeptAuswahl.options[rezeptAuswahl.selectedIndex].value;
+
+            // Get the number of people from the input field
+            var numberOfPeople = parseInt(document.getElementById("personen").value);
+
+            // Define ingredient quantities for 1 person
+            var flourPerPerson;
+            var sugarPerPerson;
+            var butterPerPerson;
+            var chocolatePerPerson;
+            var vanillaSugarPerPerson;
+            var bakingPowderPerPerson;
+            var eggsPerPerson;
+            var almondsPerPerson;
+
+            var rezeptTitel = document.getElementById("rezeptTitel");
+
+            if (selectedRecipe === "Cookies") {
+                flourPerPerson = 60; // g
+                sugarPerPerson = 30; // g
+                butterPerPerson = 30; // g
+                chocolatePerPerson = 20; // g
+                vanillaSugarPerPerson = 5; // g
+                bakingPowderPerPerson = 2; // g
+                eggsPerPerson = 0.5; // piece
+                almondsPerPerson = 0;
+            } else if (selectedRecipe === "Mailänderli") {
+                flourPerPerson = 60; // g
+                sugarPerPerson = 30; // g
+                butterPerPerson = 30; // g
+                almondsPerPerson = 10; // g
+                eggsPerPerson = 0.5; // piece
+                chocolatePerPerson = 0;
+                vanillaSugarPerPerson = 0;
+                bakingPowderPerPerson = 0;
+            }
+
+            // Calculate the total quantities for the entered number of people
+            var totalFlour = flourPerPerson * numberOfPeople;
+            var totalSugar = sugarPerPerson * numberOfPeople;
+            var totalButter = butterPerPerson * numberOfPeople;
+            var totalChocolate = chocolatePerPerson * numberOfPeople;
+            var totalVanillaSugar = vanillaSugarPerPerson * numberOfPeople;
+            var totalBakingPowder = bakingPowderPerPerson * numberOfPeople;
+            var totalEggs = eggsPerPerson * numberOfPeople;
+            var totalAlmonds = almondsPerPerson * numberOfPeople;
+
+            // Display the calculated quantities
+            var rezeptMengen = document.getElementById("rezeptMengen");
+            rezeptMengen.innerHTML = `
+                <h3 class="text-center">Ingredients for ${numberOfPeople} People:</h3>
+                <ul>
+                    <li>${totalFlour} g Flour</li>
+                    <li>${totalSugar} g Sugar</li>
+                    <li>${totalButter} g Butter</li>
+                    <li>${totalChocolate} g Chocolate</li>
+                    <li>${totalVanillaSugar} g Vanilla Sugar</li>
+                    <li>${totalBakingPowder} g Baking Powder</li>
+                    <li>${totalEggs} Eggs</li>
+                    <li>${totalAlmonds} g Almonds</li>
+                </ul>
+            `;
+
+            // Display the recipe title
+            var rezeptTitel = document.getElementById("rezeptTitel");
+            rezeptTitel.innerText = selectedRecipe + " Recipe";
+
+            // Display the recipe container
+            var rezeptContainer = document.getElementById("rezeptContainer");
+            rezeptContainer.style.display = "block";
+        }
+    </script>
+</body>
+</html>
